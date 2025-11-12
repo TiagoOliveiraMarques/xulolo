@@ -25,8 +25,8 @@ var componentModel = new Checklist(
 // event loop
 while (!cts.IsCancellationRequested)
 {
-    renderer.Clear();
     componentModel.Render(renderer);
+    renderer.Flush();
 
     var @event = await eventOutbox.ReceiveAsync(cts.Token);
     componentModel.Update(@event);

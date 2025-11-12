@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace Xulolo.Terminal.Renderer
 {
@@ -10,7 +8,7 @@ namespace Xulolo.Terminal.Renderer
 
         public string Content => sb.ToString();
 
-        public void Clear()
+        public void Flush()
         {
             sb.Clear();
         }

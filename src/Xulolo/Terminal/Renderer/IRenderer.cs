@@ -2,8 +2,8 @@
 {
     public interface IRenderer
     {
-        void Clear();
-
         void Render(ReadOnlySpan<char> text);
+
+        void Flush();
     }
 }
