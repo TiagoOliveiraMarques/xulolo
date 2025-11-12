@@ -33,9 +33,9 @@ namespace Xulolo.Tests.Terminal.Components
             var checklist = new Checklist(new Checkbox("text 1"), new Checkbox("test 2"));
             var renderer = new StringRenderer();
 
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.UpArrow));
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.UpArrow));
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.UpArrow));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.UpArrow, (char)0));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.UpArrow, (char)0));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.UpArrow, (char)0));
 
             checklist.Render(renderer);
 
@@ -48,9 +48,9 @@ namespace Xulolo.Tests.Terminal.Components
             var checklist = new Checklist(new Checkbox("text 1"), new Checkbox("test 2"));
             var renderer = new StringRenderer();
 
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow));
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow));
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow, (char)0));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow, (char)0));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow, (char)0));
 
             checklist.Render(renderer);
 
@@ -63,7 +63,7 @@ namespace Xulolo.Tests.Terminal.Components
             var checklist = new Checklist(new Checkbox("text 1"), new Checkbox("test 2"), new Checkbox("test 3"));
             var renderer = new StringRenderer();
 
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow, (char)0));
 
             checklist.Render(renderer);
 
@@ -76,7 +76,7 @@ namespace Xulolo.Tests.Terminal.Components
             var checklist = new Checklist(new Checkbox("text 1"), new Checkbox("test 2"), new Checkbox("test 3"));
             var renderer = new StringRenderer();
 
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.Enter));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.Enter, (char)0));
             checklist.Render(renderer);
 
             return Verify(renderer.Content);
@@ -88,8 +88,8 @@ namespace Xulolo.Tests.Terminal.Components
             var checklist = new Checklist(new Checkbox("text 1"), new Checkbox("test 2"), new Checkbox("test 3"));
             var renderer = new StringRenderer();
 
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.End));
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.End));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.End, (char)0));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.End, (char)0));
             checklist.Render(renderer);
 
             return Verify(renderer.Content);
@@ -101,8 +101,8 @@ namespace Xulolo.Tests.Terminal.Components
             var checklist = new Checklist(new Checkbox("text 1"), new Checkbox("test 2"), new Checkbox("test 3"));
             var renderer = new StringRenderer();
 
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow));
-            checklist.Update(new TerminalKeyEvent(ConsoleKey.Enter));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.DownArrow, (char)0));
+            checklist.Update(new TerminalKeyEvent(ConsoleKey.Enter, (char)0));
 
             checklist.Render(renderer);
 

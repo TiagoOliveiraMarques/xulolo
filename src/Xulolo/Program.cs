@@ -17,7 +17,10 @@ await using var eventSources = new EventSourceCoordinator(
     new ConsoleEventSource(eventOutbox)
 );
 
-var componentModel = new Checklist(new Checkbox("todo 1"),new Checkbox("todo 2"));
+var componentModel = new Checklist(
+    new TextInput(),
+    new Checkbox("todo 1"),
+    new Checkbox("todo 2"));
 
 // event loop
 while (!cts.IsCancellationRequested)

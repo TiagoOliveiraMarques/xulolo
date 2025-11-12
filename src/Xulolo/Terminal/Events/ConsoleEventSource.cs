@@ -10,7 +10,7 @@
                     await Task.Delay(50, cancellationToken);
 
                 var keyInfo = Console.ReadKey(true);
-                var @event = new TerminalKeyEvent(keyInfo.Key);
+                var @event = new TerminalKeyEvent(keyInfo.Key, keyInfo.KeyChar);
 
                 await outbox.SendAsync(@event, cancellationToken);
             }

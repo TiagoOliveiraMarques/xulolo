@@ -5,50 +5,64 @@ namespace Xulolo.Terminal.Components
 {
     public class Checklist : IComponent
     {
-        private readonly List<Checkbox> _checkboxes = new();
+        private readonly List<IComponent> _components = new();
         private int _focusedIndex = 0;
 
-        public Checklist(params Checkbox[] checkboxes)
+        public Checklist(params IComponent[] components)
         {
-            _checkboxes.AddRange(checkboxes);
-            if (_checkboxes.Count > 0)
+            _components.AddRange(components);
+            BlurAll();
+            
+            if (_components.Count > 0)
             {
-                _checkboxes[0].Focused = true;
+                _components[0].Focused = true;
                 _focusedIndex = 0;
             }
         }
 
+        public bool Focused { get; set; } = true;
+
         public void Render(IRenderer renderer)
         {
-            foreach (var checkbox in _checkboxes)
+            foreach (var component in _components)
             {
-                var cursor = checkbox.Focused ? " \u276F " : "   ";
+                var cursor = component.Focused ? " \u276F " : "   ";
                 renderer.Render(cursor);
-                checkbox.Render(renderer);
+                component.Render(renderer);
             }
         }
 
         public void Update(TerminalEvent @event)
         {
+            if (!Focused) return;
+
             if (@event is TerminalKeyEvent keyEvent)
             {
                 switch (keyEvent.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        _focusedIndex = Math.Clamp(_focusedIndex - 1, 0, _checkboxes.Count - 1);
+                        _focusedIndex = Math.Clamp(_focusedIndex - 1, 0, _components.Count - 1);
                         break;
                     case ConsoleKey.DownArrow:
-                        _focusedIndex = Math.Clamp(_focusedIndex + 1, 0, _checkboxes.Count - 1);
+                        _focusedIndex = Math.Clamp(_focusedIndex + 1, 0, _components.Count - 1);
                         break;
                 }
 
-                _checkboxes.ForEach(c => c.Focused = false);
-                _checkboxes[_focusedIndex].Focused = true;
+                BlurAll();
+                _components[_focusedIndex].Focused = true;
             }
 
-            foreach (var checkbox in _checkboxes)
+            foreach (var component in _components)
             {
-                checkbox.Update(@event);
+                component.Update(@event);
+            }
+        }
+
+        private void BlurAll()
+        {
+            foreach (var component in _components)
+            {
+                component.Focused = false;
             }
         }
     }

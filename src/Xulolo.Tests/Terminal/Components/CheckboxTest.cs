@@ -23,7 +23,7 @@ namespace Xulolo.Tests.Terminal.Components
             Assert.False(checkbox.Checked);
             Assert.False(checkbox.Focused);
 
-            checkbox.Update(new TerminalKeyEvent(ConsoleKey.Enter));
+            checkbox.Update(new TerminalKeyEvent(ConsoleKey.Enter, (char)0));
             Assert.False(checkbox.Focused);
             Assert.False(checkbox.Checked);
         }
@@ -35,7 +35,7 @@ namespace Xulolo.Tests.Terminal.Components
             Assert.False(checkbox.Checked);
             checkbox.Focused = true;
 
-            checkbox.Update(new TerminalKeyEvent(ConsoleKey.Enter));
+            checkbox.Update(new TerminalKeyEvent(ConsoleKey.Enter, (char)0));
             Assert.True(checkbox.Focused);
             Assert.True(checkbox.Checked);
         }
@@ -48,7 +48,7 @@ namespace Xulolo.Tests.Terminal.Components
             checkbox.Focused = true;
             checkbox.Checked = false;
 
-            checkbox.Update(new TerminalKeyEvent(key));
+            checkbox.Update(new TerminalKeyEvent(key, (char)0));
             Assert.True(checkbox.Focused);
             Assert.False(checkbox.Checked);
         }
