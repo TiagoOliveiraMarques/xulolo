@@ -1,6 +1,6 @@
-﻿using Xulolo.Terminal.Components;
-using Xulolo.Terminal.Events;
-using Xulolo.Terminal.Renderer;
+﻿
+using Xulolo.Renderer;
+using Xulolo.View;
 
 var cts = new CancellationTokenSource();
 
@@ -11,23 +11,19 @@ void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
 }
 
 var renderer = new DefaultRenderer();
-var eventOutbox = new EventOutbox(capacity: 100);
-await using var eventSources = new EventSourceCoordinator(
-    cts.Token,
-    new ConsoleEventSource(eventOutbox)
-);
 
-var componentModel = new Checklist(
-    new TextInput(),
-    new Checkbox("todo 1"),
-    new Checkbox("todo 2"));
+var view = new Block(
+    new FocusableElement(false, new Textbox("")),
+    new FocusableElement(true, new Checkbox("todo 1", false)),
+    new FocusableElement(false, new Checkbox("todo 2", true))
+    );
 
-// event loop
-while (!cts.IsCancellationRequested)
-{
-    componentModel.Render(renderer);
-    renderer.Flush();
+view.Render(renderer);
+renderer.Flush();
 
-    var @event = await eventOutbox.ReceiveAsync(cts.Token);
-    componentModel.Update(@event);
-}
+Console.ReadKey(true);
+
+renderer.Render("a");
+renderer.Flush();
+
+Console.ReadKey(true);

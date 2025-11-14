@@ -1,21 +1,21 @@
 ﻿using System.Text;
 
-namespace Xulolo.Terminal.Renderer
+namespace Xulolo.Renderer
 {
     public class StringRenderer : IRenderer
     {
-        private readonly StringBuilder sb = new();
+        private readonly StringBuilder _sb = new();
 
-        public string Content => sb.ToString();
+        public string Content => _sb.ToString();
 
         public void Flush()
         {
-            sb.Clear();
+            _sb.Clear();
         }
 
         public void Render(ReadOnlySpan<char> text)
         {
-            sb.Append(text);
+            _sb.Append(text);
         }
     }
 }

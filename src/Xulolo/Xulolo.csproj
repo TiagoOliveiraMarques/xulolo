@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
 	  
 	<PublishSingleFile>true</PublishSingleFile>
@@ -11,6 +12,7 @@
 	<PublishAot>true</PublishAot>
 	<PublishTrimmed>true</PublishTrimmed>
 	<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+	<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
 </Project>
