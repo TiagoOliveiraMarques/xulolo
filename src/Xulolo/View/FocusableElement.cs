@@ -8,7 +8,7 @@ namespace Xulolo.View
     /// <remarks>Use this type to wrap a child view and visually indicate whether it is focused. The focus
     /// state affects how the element is rendered, typically by adding a prefix or highlight. This type is intended for
     /// internal use within view composition and rendering logic.</remarks>
-    internal class FocusableElement : IView
+    public class FocusableElement : IView
     {
         public FocusableElement(bool focused, IView child)
         {
