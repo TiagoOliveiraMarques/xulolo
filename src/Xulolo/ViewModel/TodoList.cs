@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xulolo.Model;
-using Xulolo.Renderer;
+﻿using Xulolo.Model;
 using Xulolo.View;
 
 namespace Xulolo.ViewModel
