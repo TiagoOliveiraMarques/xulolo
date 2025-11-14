@@ -1,7 +1,7 @@
 ﻿
+using Xulolo.Events;
 using Xulolo.Model;
 using Xulolo.Renderer;
-using Xulolo.View;
 using Xulolo.ViewModel;
 
 var cts = new CancellationTokenSource();
@@ -15,15 +15,15 @@ void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
 var renderer = new DefaultRenderer();
 var model = new ModelManager();
 var viewModel = new TodoList(model);
+var eventSource = new ConsoleEventSource(outboxCapacity: 10);
 
-var view = viewModel.View();
+while (!cts.IsCancellationRequested)
+{
+    var view = viewModel.View();
+    view.Render(renderer);
 
-view.Render(renderer);
-renderer.Flush();
+    renderer.Flush();
 
-Console.ReadKey(true);
-
-renderer.Render("a");
-renderer.Flush();
-
-Console.ReadKey(true);
+    var @event = await eventSource.ChannelReader.ReadAsync(cts.Token);
+    viewModel.Handle(@event);
+}

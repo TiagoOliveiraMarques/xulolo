@@ -1,4 +1,5 @@
-﻿using Xulolo.Model;
+﻿using Xulolo.Events;
+using Xulolo.Model;
 using Xulolo.View;
 
 namespace Xulolo.ViewModel
@@ -12,6 +13,11 @@ namespace Xulolo.ViewModel
         public TodoList(ModelManager model)
         {
             _model = model;
+        }
+
+        public void Handle(Event @event)
+        {
+            // do nothing for now
         }
 
         public IView View()
