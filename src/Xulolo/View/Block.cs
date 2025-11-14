@@ -13,6 +13,11 @@ namespace Xulolo.View
             Children = children;
         }
 
+        public Block(IReadOnlyCollection<IView> children)
+        {
+            Children = children;
+        }
+
         public IReadOnlyCollection<IView> Children { get; }
 
         public void Render(IRenderer renderer)

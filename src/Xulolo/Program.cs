@@ -1,6 +1,8 @@
 ﻿
+using Xulolo.Model;
 using Xulolo.Renderer;
 using Xulolo.View;
+using Xulolo.ViewModel;
 
 var cts = new CancellationTokenSource();
 
@@ -11,12 +13,10 @@ void Console_CancelKeyPress(object? sender, ConsoleCancelEventArgs e)
 }
 
 var renderer = new DefaultRenderer();
+var model = new ModelManager();
+var viewModel = new TodoList(model);
 
-var view = new Block(
-    new FocusableElement(false, new Textbox("")),
-    new FocusableElement(true, new Checkbox("todo 1", false)),
-    new FocusableElement(false, new Checkbox("todo 2", true))
-    );
+var view = viewModel.View();
 
 view.Render(renderer);
 renderer.Flush();
